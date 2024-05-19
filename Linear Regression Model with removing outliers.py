@@ -1,7 +1,14 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
 
 import pandas as pd
 import numpy as np
 
+
+# In[2]:
 
 
 def get_variance(func):
@@ -19,6 +26,8 @@ def get_standard_deviation(a):
         pass
 
 
+# In[3]:
+
 
 def covariance(func):
        def wrap(a,b):
@@ -31,6 +40,10 @@ def covariance(func):
 @covariance
 def get_coefficient(a,b):
        pass
+   
+
+
+# In[4]:
 
 
 def get_eqaution(a,b):
@@ -38,6 +51,10 @@ def get_eqaution(a,b):
     slope=c[0]*(c[2]['Standard_Deviation']/c[1]['Standard_Deviation'])
     intercept=c[2]['Mean']-c[1]['Mean']*slope
     return f'y={slope}x+{intercept}'
+
+
+# In[5]:
+
 
 class my_LinearRegression:
     def __init(self):
@@ -61,7 +78,12 @@ class my_LinearRegression:
         out_2=x[x>(med_3+(1.5*iqr))]
         outliers=np.concatenate([out_1,out_2])
         return outliers
-
+            
+    
+    
+    
+    
+    
     
     def get_variance(func):
         def wrap(self,a):
@@ -142,6 +164,8 @@ class my_LinearRegression:
         return f'The model has the equation as {self.equation}'
 
 
+# In[6]:
+
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -158,11 +182,17 @@ X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.2,
 model1 = my_LinearRegression()
 model1.fit(X_train, y_train)
 
+# Make predictions and evaluate the model
 results, y_predict_my = model1.predict(X_test, y_test)
 print(results)
 
+# Print the model's equation
 print(model1)
 
+
+
+
+# In[7]:
 
 
 model = LinearRegression()
@@ -185,8 +215,14 @@ print(f"The model has R-Squared = {r_squared}")
 print(f"The model has RMSE = {rmse}")
 
 
+# In[8]:
+
 
 import matplotlib.pyplot as plt
+
+
+# In[9]:
+
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
@@ -198,6 +234,7 @@ ax1.set_ylabel('Values')
 ax1.set_title('Linear Regression Predictions vs Actual')
 ax1.legend()
 
+# Plot the module-based model predictions
 ax2.scatter(X_test, y_predict_my, color='g', label='Module-Based Predicted')
 ax2.scatter(X_test, y_test, color='b', label='Actual')
 ax2.set_xlabel('X_test')
@@ -205,6 +242,7 @@ ax2.set_ylabel('Values')
 ax2.set_title('Module-Based Model Predictions vs Actual')
 ax2.legend()
 
+# Display the plot
 plt.tight_layout()
 plt.show()
 
